@@ -48,7 +48,7 @@
                         @foreach($items as $item)
                             <tr>
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $item->name }}</td>
-                                <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $item->category?->name ?? '-' }}</td>
+                                <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $item->category->name ?? 'Uncategorized' }}</td>
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $item->description ?? '-' }}</td>
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $item->quantity }}</td>
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">RM {{ number_format($item->price, 2) }}</td>

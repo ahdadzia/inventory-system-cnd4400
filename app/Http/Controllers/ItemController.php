@@ -36,7 +36,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => 'required|integer|exists:categories,id',
             'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
@@ -58,7 +58,7 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Item $item)
+    public function edit(Item $item, Category $category)
     {
         $category = Category::orderBy('name')->get();
         return view('items.edit', compact('item', 'category'));
@@ -67,11 +67,11 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item, Category $category)
+    public function update(Request $request, Item $item)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => 'required|integer|exists:categories,id',
             'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
@@ -85,7 +85,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item, Category $category)
+    public function destroy(Item $item)
     {
         $item->delete();
 
