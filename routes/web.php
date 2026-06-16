@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StockTransactionController;
+use App\Http\Controllers\CategoryController;
 
 // items pages
 Route::resource('items', ItemController::class);
 
 // stock transactions pages
 Route::resource('stock_transactions', StockTransactionController::class);
+
+// categories pages
+Route::resource('categories', CategoryController::class);
 
 // dashboard pages
 Route::get('/', function () {

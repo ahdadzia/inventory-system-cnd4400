@@ -67,6 +67,12 @@ class MenuHelper
                 'name' => 'Stock Transactions',
                 'path' => '/stock_transactions',
             ],
+
+            [ 
+                'icon' => 'dashboard',
+                'name' => 'Categories',
+                'path' => '/categories',
+            ]
         ];
     }
 
