@@ -4,47 +4,68 @@ namespace App\Helpers;
 
 class MenuHelper
 {
+    // public static function getMainNavItems()
+    // {
+    //     return [
+    //         [
+    //             'icon' => 'dashboard',
+    //             'name' => 'Dashboard',
+    //             'subItems' => [
+    //                 ['name' => 'Ecommerce', 'path' => '/'],
+    //             ],
+    //         ],
+    //         [
+    //             'icon' => 'calendar',
+    //             'name' => 'Calendar',
+    //             'path' => '/calendar',
+    //         ],
+    //         [
+    //             'icon' => 'user-profile',
+    //             'name' => 'User Profile',
+    //             'path' => '/profile',
+    //         ],
+    //         [
+    //             'name' => 'Forms',
+    //             'icon' => 'forms',
+    //             'subItems' => [
+    //                 ['name' => 'Form Elements', 'path' => '/form-elements', 'pro' => false],
+    //             ],
+    //         ],
+    //         [
+    //             'name' => 'Tables',
+    //             'icon' => 'tables',
+    //             'subItems' => [
+    //                 ['name' => 'Basic Tables', 'path' => '/basic-tables', 'pro' => false]
+    //             ],
+    //         ],
+    //         [
+    //             'name' => 'Pages',
+    //             'icon' => 'pages',
+    //             'subItems' => [
+    //                 ['name' => 'Blank Page', 'path' => '/blank', 'pro' => false],
+    //                 ['name' => '404 Error', 'path' => '/error-404', 'pro' => false]
+    //             ],
+    //         ],
+    //     ];
+    // }
+
     public static function getMainNavItems()
     {
         return [
             [
                 'icon' => 'dashboard',
                 'name' => 'Dashboard',
-                'subItems' => [
-                    ['name' => 'Ecommerce', 'path' => '/'],
-                ],
+                'path' => '/',
             ],
             [
-                'icon' => 'calendar',
-                'name' => 'Calendar',
-                'path' => '/calendar',
-            ],
-            [
-                'icon' => 'user-profile',
-                'name' => 'User Profile',
-                'path' => '/profile',
-            ],
-            [
-                'name' => 'Forms',
-                'icon' => 'forms',
-                'subItems' => [
-                    ['name' => 'Form Elements', 'path' => '/form-elements', 'pro' => false],
-                ],
-            ],
-            [
-                'name' => 'Tables',
                 'icon' => 'tables',
-                'subItems' => [
-                    ['name' => 'Basic Tables', 'path' => '/basic-tables', 'pro' => false]
-                ],
+                'name' => 'Items',
+                'path' => '/items',
             ],
             [
-                'name' => 'Pages',
-                'icon' => 'pages',
-                'subItems' => [
-                    ['name' => 'Blank Page', 'path' => '/blank', 'pro' => false],
-                    ['name' => '404 Error', 'path' => '/error-404', 'pro' => false]
-                ],
+                'icon' => 'forms',
+                'name' => 'Stock Transactions',
+                'path' => '/stock_transactions',
             ],
         ];
     }
@@ -90,12 +111,22 @@ class MenuHelper
                 'title' => 'Menu',
                 'items' => self::getMainNavItems()
             ],
-            [
-                'title' => 'Others',
-                'items' => self::getOthersItems()
-            ]
         ];
     }
+
+    // public static function getMenuGroups()
+    // {
+    //     return [
+    //         [
+    //             'title' => 'Menu',
+    //             'items' => self::getMainNavItems()
+    //         ],
+    //         [
+    //             'title' => 'Others',
+    //             'items' => self::getOthersItems()
+    //         ]
+    //     ];
+    // }
 
     public static function isActive($path)
     {
