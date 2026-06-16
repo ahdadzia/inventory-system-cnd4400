@@ -10,7 +10,7 @@ class Item extends Model
 {
     protected $fillable = [
         'name',
-        'category',
+        'category_id',
         'quantity',
         'price',
         'description',
@@ -23,6 +23,6 @@ class Item extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category', 'name');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }
