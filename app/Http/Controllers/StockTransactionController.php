@@ -12,7 +12,8 @@ class StockTransactionController extends Controller
      */
     public function index()
     {
-        //
+        $stockTransactions = StockTransaction::latest()->get();
+        return view('stock_transactions.index', compact('stockTransactions'));
     }
 
     /**
@@ -20,7 +21,7 @@ class StockTransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('stock_transactions.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class StockTransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'item_id' => 'required|exists:items,id',
+            'quantity' => 'required|integer|min:1',
+            'transaction_type' => 'required|in:in,out',
+            'description' => 'nullable|string',
+        ]);
+
+        StockTransaction::create($request->all());
+
+        return redirect()->route('stock_transactions.index')->with('success', 'Stock transaction recorded successfully.');
     }
 
     /**

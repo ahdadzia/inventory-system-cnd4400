@@ -12,7 +12,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::latest()->get();
+
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -20,7 +22,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -28,7 +30,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+        ]);
+
+        Item::create($request->all());
+
+        return redirect()->route('items.index')->with('success', 'Item added successfully.');
     }
 
     /**
@@ -44,7 +56,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit', compact('item'));
     }
 
     /**
@@ -52,7 +64,17 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+        ]);
+
+        $item->update($request->all());
+
+        return redirect()->route('items.index')->with('success', 'Item updated successfully.');
     }
 
     /**
@@ -60,6 +82,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return redirect()->route('items.index')->with('success', 'Item deleted successfully.');
     }
 }

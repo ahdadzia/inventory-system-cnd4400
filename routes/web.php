@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemController;
+
+// items pages
+Route::resource('items', ItemController::class);
+
+// stock transactions pages
+Route::resource('stock_transactions', StockTransactionController::class);
 
 // dashboard pages
 Route::get('/', function () {
