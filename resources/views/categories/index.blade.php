@@ -48,14 +48,14 @@
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300">{{ $category->description ?? '-' }}</td>
                                 <td class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-center">
                                     <a href="{{ route('categories.edit', $category) }}"
-                                       class="inline-flex items-center rounded bg-yellow-500 px-3 py-1 text-sm font-medium text-white hover:bg-yellow-600">
+                                       class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700">
                                         Edit
                                     </a>
                                     
                                     <form action="{{ route('categories.destroy', $category) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="inline-flex items-center rounded bg-red-600 px-3 py-1 text-sm font-medium text-white hover:bg-red-700">
+                                        <button type="submit" class="inline-flex items-center justify-center rounded-lg bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700">
                                             Delete
                                         </button>
                                     </form>
