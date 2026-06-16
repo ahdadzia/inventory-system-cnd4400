@@ -23,10 +23,16 @@
 
             <div>
                 <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
-                <input type="text" name="category" id="category" value="{{ old('category', $item->category) }}"
-                       class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400">
+                <select name="category_id" id="category" class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400">
+                    <option value="">Select category</option>
+                    @foreach($category as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('category')
-                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 

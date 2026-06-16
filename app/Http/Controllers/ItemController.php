@@ -13,10 +13,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::latest()->get();
-        $categories = Category::get();
+        // $items = Item::latest()->get();
+        $items = Item::with('category')->latest()->get();
+        // $categories = Category::get();
 
-        return view('items.index', compact('items', 'categories'));
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -57,8 +58,9 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Item $item, Category $category)
+    public function edit(Item $item)
     {
+        $category = Category::orderBy('name')->get();
         return view('items.edit', compact('item', 'category'));
     }
 

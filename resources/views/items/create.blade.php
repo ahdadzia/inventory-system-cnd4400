@@ -31,17 +31,7 @@
                         </option>
                     @endforeach
                 </select>
-                @error('category')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
-                <textarea name="description" id="description" rows="4"
-                          placeholder="Enter item description"
-                          class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400">{{ old('description') }}</textarea>
-                @error('description')
+                @error('category_id')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
