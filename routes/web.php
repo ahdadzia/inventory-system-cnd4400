@@ -17,7 +17,7 @@ Route::resource('categories', CategoryController::class);
 
 // dashboard pages
 Route::get('/', function () {
-    return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
+    return view('pages.dashboard.ecommerce', ['title' => 'Dashboard']);
 })->name('dashboard');
 
 // calender pages

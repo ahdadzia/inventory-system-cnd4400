@@ -13,7 +13,8 @@ class StockTransactionController extends Controller
     public function index()
     {
         $stockTransactions = StockTransaction::latest()->get();
-        return view('stock_transactions.index', compact('stockTransactions'));
+        $title = 'Stock Transactions';
+        return view('stock_transactions.index', compact('stockTransactions', 'title'));
     }
 
     /**
@@ -21,7 +22,8 @@ class StockTransactionController extends Controller
      */
     public function create()
     {
-        return view('stock_transactions.create');
+        $title = 'Add New Stock Transaction';
+        return view('stock_transactions.create', compact('title'));
     }
 
     /**
@@ -54,7 +56,8 @@ class StockTransactionController extends Controller
      */
     public function edit(StockTransaction $stockTransaction)
     {
-        //
+        $title = 'Edit Stock Transaction';
+        return view('stock_transactions.edit', compact('stockTransaction', 'title'));
     }
 
     /**

@@ -16,8 +16,9 @@ class ItemController extends Controller
         // $items = Item::latest()->get();
         $items = Item::with('category')->latest()->get();
         // $categories = Category::get();
+        $title = 'Items';
 
-        return view('items.index', compact('items'));
+        return view('items.index', compact('items', 'title'));
     }
 
     /**
@@ -26,6 +27,7 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $title = 'Add New Item';
         return view('items.create', compact('categories'));
     }
 
@@ -61,6 +63,7 @@ class ItemController extends Controller
     public function edit(Item $item, Category $category)
     {
         $category = Category::orderBy('name')->get();
+        $title = 'Edit Item';
         return view('items.edit', compact('item', 'category'));
     }
 

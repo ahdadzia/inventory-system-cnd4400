@@ -13,8 +13,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
+        $title = 'Categories';
 
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories', 'title'));
     }
 
     /**
@@ -22,7 +23,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        $title = 'Add New Category';
+        return view('categories.create', compact('title'));
     }
 
     /**
@@ -53,7 +55,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        $title = 'Edit Category';
+        return view('categories.edit', compact('category', 'title'));
     }
 
     /**
