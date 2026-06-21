@@ -32,8 +32,8 @@
                 <select name="type" id="type"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white">
                     <option value="">Select type</option>
-                    <option value="in" {{ old('type') == 'in' ? 'selected' : '' }}>Stock In</option>
-                    <option value="out" {{ old('type') == 'out' ? 'selected' : '' }}>Stock Out</option>
+                    <option value="stock_in" {{ old('type') == 'stock_in' ? 'selected' : '' }}>Stock In</option>
+                    <option value="stock_out" {{ old('type') == 'stock_out' ? 'selected' : '' }}>Stock Out</option>
                 </select>
                 @error('type')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

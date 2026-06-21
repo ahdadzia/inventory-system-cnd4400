@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\StockTransaction;
 use Illuminate\Http\Request;
 use App\Models\Item;
-use illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class StockTransactionController extends Controller
 {
@@ -37,19 +38,19 @@ class StockTransactionController extends Controller
         $request->validate([
             'item_id' => 'required|exists:items,id',
             'quantity' => 'required|integer|min:1',
-            'type' => 'required|in:in,out',
+            'type' => 'required|in:stock_in,stock_out',
             'note' => 'nullable|string|max:255',
         ]);
 
         DB::transaction(function () use ($request) {
             $item = Item::findOrFail($request->item_id);
 
-            if ($request->type === 'out' && $item->quantity < $request->quantity) {
+            if ($request->type === 'stock_out' && $item->quantity < $request->quantity) {
                 throw new \Exception('Insufficient stock for this transaction.');
             }
 
             // Update item quantity
-            $item->quantity += ($request->type === 'in' ? $request->quantity : -$request->quantity);
+            $item->quantity += ($request->type === 'stock_in' ? $request->quantity : -$request->quantity);
             $item->save();
 
             // Create stock transaction
