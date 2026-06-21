@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\StockTransaction;
 use Illuminate\Http\Request;
+use App\Models\Item;
+use illuminate\Support\Facades\DB;
 
 class StockTransactionController extends Controller
 {
@@ -12,7 +14,7 @@ class StockTransactionController extends Controller
      */
     public function index()
     {
-        $stockTransactions = StockTransaction::latest()->get();
+        $stockTransactions = StockTransaction::with('item')->latest()->get();
         $title = 'Stock Transactions';
         return view('stock_transactions.index', compact('stockTransactions', 'title'));
     }
@@ -22,8 +24,9 @@ class StockTransactionController extends Controller
      */
     public function create()
     {
+        $items = Item::orderBy('name')->get();
         $title = 'Add New Stock Transaction';
-        return view('stock_transactions.create', compact('title'));
+        return view('stock_transactions.create', compact('items', 'title'));
     }
 
     /**
@@ -34,11 +37,29 @@ class StockTransactionController extends Controller
         $request->validate([
             'item_id' => 'required|exists:items,id',
             'quantity' => 'required|integer|min:1',
-            'transaction_type' => 'required|in:in,out',
-            'description' => 'nullable|string',
+            'type' => 'required|in:in,out',
+            'note' => 'nullable|string|max:255',
         ]);
 
-        StockTransaction::create($request->all());
+        DB::transaction(function () use ($request) {
+            $item = Item::findOrFail($request->item_id);
+
+            if ($request->type === 'out' && $item->quantity < $request->quantity) {
+                throw new \Exception('Insufficient stock for this transaction.');
+            }
+
+            // Update item quantity
+            $item->quantity += ($request->type === 'in' ? $request->quantity : -$request->quantity);
+            $item->save();
+
+            // Create stock transaction
+            StockTransaction::create([
+                'item_id' => $request->item_id,
+                'type' => $request->type,
+                'quantity' => $request->quantity,
+                'note' => $request->note,
+            ]);
+        });
 
         return redirect()->route('stock_transactions.index')->with('success', 'Stock transaction recorded successfully.');
     }
