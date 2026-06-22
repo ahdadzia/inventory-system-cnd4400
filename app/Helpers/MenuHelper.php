@@ -74,6 +74,16 @@ class MenuHelper
                 'path' => '/categories',
             ]
         ];
+
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            $items[] = [
+                'icon' => 'user-profile',
+                'name' => 'User Accounts',
+                'path' => '/users',
+            ];
+        }
+
+        return $items;
     }
 
     public static function getOthersItems()

@@ -7,7 +7,6 @@ use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
-
 use App\Http\Middleware\EnsureUserIsAdmin;
 
 use App\Models\Item;
@@ -27,7 +26,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('login.store');
     Route::post('/signin', [LoginController::class, 'login'])->name('signin.store');
 
-    // No public registration for inventory system
+    // No public registration
     Route::redirect('/signup', '/login');
     Route::redirect('/register', '/login');
 });
@@ -44,7 +43,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 Route::middleware('auth')->group(function () {
 
-    // dashboard pages
+    // Dashboard page
     Route::get('/', function () {
         $title = 'Dashboard';
 
@@ -84,46 +83,36 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('dashboard');
     })->name('dashboard.redirect');
 
-    // items pages
+    // Inventory system pages
     Route::resource('items', ItemController::class);
-
-    // stock transactions pages
     Route::resource('stock_transactions', StockTransactionController::class);
-
-    // categories pages
     Route::resource('categories', CategoryController::class);
 
-    // calendar pages
+    // Other TailAdmin pages
     Route::get('/calendar', function () {
         return view('pages.calender', ['title' => 'Calendar']);
     })->name('calendar');
 
-    // profile pages
     Route::get('/profile', function () {
         return view('pages.profile', ['title' => 'Profile']);
     })->name('profile');
 
-    // form pages
     Route::get('/form-elements', function () {
         return view('pages.form.form-elements', ['title' => 'Form Elements']);
     })->name('form-elements');
 
-    // tables pages
     Route::get('/basic-tables', function () {
         return view('pages.tables.basic-tables', ['title' => 'Basic Tables']);
     })->name('basic-tables');
 
-    // blank page
     Route::get('/blank', function () {
         return view('pages.blank', ['title' => 'Blank']);
     })->name('blank');
 
-    // error pages
     Route::get('/error-404', function () {
         return view('pages.errors.error-404', ['title' => 'Error 404']);
     })->name('error-404');
 
-    // chart pages
     Route::get('/line-chart', function () {
         return view('pages.chart.line-chart', ['title' => 'Line Chart']);
     })->name('line-chart');
@@ -132,7 +121,6 @@ Route::middleware('auth')->group(function () {
         return view('pages.chart.bar-chart', ['title' => 'Bar Chart']);
     })->name('bar-chart');
 
-    // ui elements pages
     Route::get('/alerts', function () {
         return view('pages.ui-elements.alerts', ['title' => 'Alerts']);
     })->name('alerts');
