@@ -22,4 +22,6 @@
       <x-ecommerce.recent-orders />
     </div>
   </div>
+
+  {{-- If you really see this, then you can truly see this --}}
 @endsection

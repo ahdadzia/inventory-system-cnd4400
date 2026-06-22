@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\CategoryController;
+use App\Models\Item;
+use App\Models\StockTransaction;
+use App\Models\Category;
 
 // items pages
 Route::resource('items', ItemController::class);
