@@ -51,7 +51,7 @@ class MenuHelper
 
     public static function getMainNavItems()
     {
-        return [
+        $items = [
             [
                 'icon' => 'dashboard',
                 'name' => 'Dashboard',
@@ -67,18 +67,17 @@ class MenuHelper
                 'name' => 'Stock Transactions',
                 'path' => '/stock_transactions',
             ],
-
-            [ 
+            [
                 'icon' => 'dashboard',
                 'name' => 'Categories',
                 'path' => '/categories',
-            ]
+            ],
         ];
 
         if (auth()->check() && auth()->user()->role === 'admin') {
             $items[] = [
                 'icon' => 'user-profile',
-                'name' => 'User Accounts',
+                'name' => 'Users',
                 'path' => '/users',
             ];
         }

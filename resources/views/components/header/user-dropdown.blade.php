@@ -108,21 +108,31 @@
         </ul>
 
         <!-- Sign Out -->
-        {{-- <form method="POST" action="#">
-            @csrf --}}
-            <a
-                href="/signin"
-                class="flex items-center w-full gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-                @click="closeDropdown()"
+        <form method="POST" action="{{ route('logout') }}" class="mt-3 border-t border-gray-200 pt-3 dark:border-gray-800">
+            @csrf
+
+            <button
+                type="submit"
+                class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
-                <span class="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                    </svg>
-                </span>
-                Sign out
-            </a>
-        {{-- </form> --}}
+                <svg
+                    class="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15.1007 19.247C14.6865 19.247 14.3507 18.9112 14.3507 18.497C14.3507 18.0828 14.6865 17.747 15.1007 17.747H18.5007C18.9149 17.747 19.2507 17.4112 19.2507 16.997V6.99701C19.2507 6.5828 18.9149 6.24701 18.5007 6.24701H15.1007C14.6865 6.24701 14.3507 5.91123 14.3507 5.49701C14.3507 5.0828 14.6865 4.74701 15.1007 4.74701H18.5007C19.7433 4.74701 20.7507 5.75437 20.7507 6.99701V16.997C20.7507 18.2397 19.7433 19.247 18.5007 19.247H15.1007ZM3.25073 11.997C3.25073 11.5828 3.58652 11.247 4.00073 11.247H13.5635L10.8762 8.55972C10.5833 8.26683 10.5833 7.79196 10.8762 7.49906C11.1691 7.20617 11.644 7.20617 11.9369 7.49906L15.9053 11.4674C16.1982 11.7603 16.1982 12.2352 15.9053 12.5281L11.9369 16.4964C11.644 16.7893 11.1691 16.7893 10.8762 16.4964C10.5833 16.2035 10.5833 15.7287 10.8762 15.4358L13.5635 12.747H4.00073C3.58652 12.747 3.25073 12.4112 3.25073 11.997Z"
+                    />
+                </svg>
+
+                Logout
+            </button>
+        </form>
     </div>
     <!-- Dropdown End -->
 </div>
