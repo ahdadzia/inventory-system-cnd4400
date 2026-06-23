@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StockTransactionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\RpcController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
@@ -92,6 +93,7 @@ Route::middleware('auth')->group(function () {
         $title = 'RPC Client';
         return view('rpc.client', compact('title'));
     })->name('rpc.client');
+    Route::post('/rpc', [RpcController::class, 'handle'])->name('rpc.handle');
 
     // Other TailAdmin pages
     Route::get('/calendar', function () {

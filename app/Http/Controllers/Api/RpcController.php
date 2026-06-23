@@ -139,6 +139,7 @@ class RpcController extends Controller
 
             $transaction = StockTransaction::create([
                 'item_id' => $data['item_id'],
+                'user_id' => auth()->id(),
                 'type' => $data['type'],
                 'quantity' => $data['quantity'],
                 'note' => $data['note'] ?? null,
@@ -146,7 +147,15 @@ class RpcController extends Controller
 
             return [
                 'message' => 'Stock transaction recorded successfully through RPC.',
-                'transaction' => $transaction,
+                'transaction' => [
+                    'id' => $transaction->id,
+                    'item_id' => $transaction->item_id,
+                    'user_id' => $transaction->user_id,
+                    'created_by' => $transaction->user?->name,
+                    'type' => $transaction->type,
+                    'quantity' => $transaction->quantity,
+                    'note' => $transaction->note,
+                ],
                 'updated_item' => [
                     'id' => $item->id,
                     'name' => $item->name,
