@@ -88,6 +88,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('stock_transactions', StockTransactionController::class);
     Route::resource('categories', CategoryController::class);
 
+    Route::get('/rpc-client', function () {
+        $title = 'RPC Client';
+        return view('rpc.client', compact('title'));
+    })->name('rpc.client');
+
     // Other TailAdmin pages
     Route::get('/calendar', function () {
         return view('pages.calender', ['title' => 'Calendar']);

@@ -90,6 +90,7 @@
                                 <th class="py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Item</th>
                                 <th class="py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">Type</th>
                                 <th class="py-3 text-center text-sm font-semibold text-gray-600 dark:text-gray-300">Qty</th>
+                                <th class="py-3 text-center text-sm font-semibold text-gray-600 dark:text-gray-300">Created By</th>
                                 <th class="py-3 text-right text-sm font-semibold text-gray-600 dark:text-gray-300">Date</th>
                             </tr>
                         </thead>
@@ -115,6 +116,10 @@
 
                                     <td class="py-3 text-center text-sm text-gray-700 dark:text-gray-300">
                                         {{ $transaction->quantity }}
+                                    </td>
+
+                                    <td class="py-3 text-center text-sm text-gray-700 dark:text-gray-300">
+                                        {{ $transaction->user->name ?? '-' }}
                                     </td>
 
                                     <td class="py-3 text-right text-sm text-gray-500 dark:text-gray-400">

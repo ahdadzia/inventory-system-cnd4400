@@ -28,12 +28,13 @@
                 <table class="w-full table-auto border-collapse border border-gray-200 dark:border-gray-700">
                     <thead>
                         <tr class="bg-gray-100 dark:bg-gray-800">
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">ID</th>
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">Item</th>
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">Type</th>
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">Quantity</th>
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">Note</th>
-                            <th class="border border-gray-300 px-4 py-2 dark:border-gray-700">Date</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">ID</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">Item</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">Type</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">Quantity</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">Note</th>
+                            <th class="border px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">Created By</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 dark:text-gray-300 text-left">Date</th>
                         </tr>
                     </thead>
 
@@ -66,6 +67,10 @@
 
                                 <td class="border border-gray-300 px-4 py-2 dark:border-gray-700">
                                     {{ $transaction->note ?? '-' }}
+                                </td>
+
+                                <td class="border border-gray-300 px-4 py-2 dark:border-gray-700">
+                                    {{ $transaction->user->name ?? '-' }}
                                 </td>
 
                                 <td class="border border-gray-300 px-4 py-2 dark:border-gray-700">

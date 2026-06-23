@@ -72,6 +72,11 @@ class MenuHelper
                 'name' => 'Categories',
                 'path' => '/categories',
             ],
+            [
+                'icon' => 'dashboard',
+                'name' => 'RPC Client',
+                'path' => '/rpc-client',
+            ],
         ];
 
         if (auth()->check() && auth()->user()->role === 'admin') {

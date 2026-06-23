@@ -8,6 +8,7 @@ class StockTransaction extends Model
 {
     protected $fillable = [
         'item_id',
+        'user_id',
         'type',
         'quantity',
         'note',
@@ -16,5 +17,10 @@ class StockTransaction extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
